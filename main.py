@@ -78,7 +78,7 @@ class MyWin(QMainWindow):
 
         dailybtn = QPushButton("Push", self)
         dailybtn.move(700, 100)
-        dailybtn.clicked.connect(self.daily)
+        dailybtn.clicked.connect(self.diary)
 
         #exercise
         btn1 = QPushButton("Enough?", self)
@@ -209,3 +209,17 @@ if __name__ == "__main__":
     con.commit()
     con.close()
     print("ok!") 
+
+
+"""
+
+과목
+날짜
+시간
+점수
+분량
+상태(컨디션)
+분야(활동분야)
+내용
+일기
+"""

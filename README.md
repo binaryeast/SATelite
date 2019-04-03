@@ -1,47 +1,79 @@
-# Py-todo
-Python(with PyQt5) GUI to-do manager
+내가 쓸 수능 관리 프로그램.
+=========================
 
-Hello, bros. This program is simple to-do manager that made by programming beginner.
-I found docs or explains about PyQt5 very hard. So, I want to share this short codes for PyQt5 sample.
-Some beginners who wants adventure will need it.
 
-I even made .exe file using Pyinstaller, it will be explain soon.
+그래서, 어떻게 할 거야?
 
-Anyway, my development settings:
-Windows 10 edu
-Python 3.5.3
+일단 가상환경은 안 잡을래. 귀찮아.
 
-1. Open the cmd with administrator privileges.
+그래서 그냥 빠르게 exe로 빼고 NSIS로 묶어서 배포. 끝.
 
-2.If python3 is registered in your envir path, you can use pip.
-write this;
+모듈화를 해 말아?
 
-$pip install -r requirements.txt
+하지 마. 귀찮아.
 
-In my opinion, PyQt5 versions will not problem.
+좋아. 예상 시간은?
 
-3.download this code.
+대략 8시?
 
-4.Make a folder wherever you can make. Of course, do not make a folder in a sensitive place!
+알았어. 시작하자.
 
-Now important, attention!
 
-5.You need two kinds of libraries for compile. One is PyQt5 bin pyds. You can find bin folder ~/python/Lib/site-packages/PyQt5/Qt.
- another is api-ms-\*-dlls. It will be in the C:\Program Files (x86)\Windows Kits\10\Redist\ucrt\DLLs\x64. Copy all.
- 
-6.Paste all dlls in your folder. Now almost done. Open cmd on the folder. Of course admin. If you don't know how to move cmd folder, just do google. or youtube.
+일단 제일 먼저는 데이터 구조부터 생각해야 하는 거야.
 
-$pyinstaller --noconsole -p yourfoldername main.py
- 
-7.Finished! you can attach icon add --icon=icon.ico command. .ico file must in your folder.
+내가 있어야 하는 정보들.
 
-now, you can click main.exe. But it will do not work.
+1. 모의고사 성적
+2. 하루 일과
+3. 믿음(멘탈)
+4. 
 
-main.exe need 'real.db' to work. that db file is sqlite db.
+과목
+날짜
+시간
+점수
+분량
+상태(컨디션)
+분야(활동분야)
+내용
+일기
 
-you can use my files. Also, You can make it run sqlmake.py.
 
-Doubleclick sqlmake.py. If anything not happened, run that file on the shell.
-'real.db' must in the folder that located main.exe
+아오 이제 뭘 어떻게 해야 하지?
 
-Thanks.
+일단 여기에 구조 복붙 해 놓고, 틀부터 만들고 해야겠지.
+
+이번엔 전체화면에 페이지도 할 수 있으면 좋겠다.
+
+1.	Date
+    A.	Date_id
+    B.	Date – text
+2.	Study
+    A.	_id
+    B.	Date
+    C.	Sub-id
+    D.	Time(hour)
+3.	Subject
+    A.	_id
+    B.	Sub_name
+4.	Task
+    A.	_id
+    B.	Task_name
+    C.	Difficulty
+    D.	Body_or_brain
+    E.	Holy
+    F.	Weight
+    G.	Factor_id
+5.	Test
+    A.	_id
+    B.	Sub_id
+    C.	Test_time
+    D.	Grade
+    E.	score
+6.	Diary
+    A.	_id
+    B.	Date
+    C.	text
+7.	Think_factor
+    A.	_id
+    B.	factor
