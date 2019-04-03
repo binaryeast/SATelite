@@ -78,7 +78,7 @@ class MyWin(QMainWindow):
 
         dailybtn = QPushButton("Push", self)
         dailybtn.move(700, 100)
-        dailybtn.clicked.connect(self.diary)
+        dailybtn.clicked.connect(self.daily)
 
         #exercise
         btn1 = QPushButton("Enough?", self)
