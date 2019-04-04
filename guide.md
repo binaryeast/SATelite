@@ -31,3 +31,21 @@ showFullScreen 메서드가 메인윈도우 클래스에도 다이얼로그 클�
 뼈대라고 생각하면 이해 쉬움. 늘리던 뭘 하던 지지고 볶아도 원래대로 내용들이 잘 있게 고정해주는 거임.
 
 QGridLayout은 일단 모든 위젯 다 설정해 주고 그 뒤에 박아주는 놈이네. 신기하군.
+
+
+        # font setting
+        font = QtGui.QFont()
+        font.setFamily("D2Coding")
+        font.setPointSize(20)
+        post.setFont(font)
+        # self.label.setFont(font) label에 이름 넣을 것.
+
+
+
+일단 가운데 board가 있어. 트렐로에서 따온 구조인데, 각 보드에는 7개까지 포스트잇이 붙어 있을 수 있어. 그리고 그 보드는 Task, Study, Test 이렇게 3개의 판이 있고, 제일 왼쪽에는 스탯 창이 있어.
+
+V가 세로, H가 가로.
+
+V로 일단 포스트잇 만들고, 그걸 H로 가로로 엮어 보드로 만들고, 그걸 또 V에 넣어서 Notice 칸을 넣고, 그걸 또 H로 스탯창이랑 엮고...
+
+그걸 최종적으로 V로 커맨드라인이랑 묶는 거지.
