@@ -57,3 +57,5 @@ y x y_length x_length
 
 
 board, stat cell, commandline, 
+
+간단하게 가자. 앞부분에는 초기화 함수랑 리딩 함수 넣어 주고, 뒷부분에는 저장 함수 넣어주면 되지. 그렇지?

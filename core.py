@@ -9,6 +9,8 @@ today = str(datetime.datetime.now())[:10]
 left_day = datetime.date(2019, 11, 14) - datetime.date.today()
 d_days = left_day.days
 
+#SQL 준비.
+
 # vars for test.
 Cellname = "To-Do"
 CellText = "일어나라 빛을 발하라."
@@ -28,8 +30,8 @@ class Window(QtWidgets.QWidget):
 
         MasterLayout = QtWidgets.QHBoxLayout() # Grid 레이아웃으로 바꿀 것.
         MasterLayout.addLayout(self.Leftwing()) 
-        MasterLayout.addLayout(self.Main("완성까지!")) # MainGrid
-        # MasterLayout.addLayout(self.Rightwing())
+        MasterLayout.addLayout(self.MainBoard("완성까지!")) # MainGrid
+        MasterLayout.addLayout(self.Rightwing())
         self.setLayout(MasterLayout)
 
         # 창 설정, 건드릴 것 없음.
@@ -97,7 +99,7 @@ class Window(QtWidgets.QWidget):
         return coreBox
 
 
-    def Main(self, notice):
+    def MainBoard(self, notice):
         Notice = QtWidgets.QLabel("Notice : %s" %notice)
         Notice.setFont(Basicfont)
 
@@ -131,8 +133,15 @@ class Window(QtWidgets.QWidget):
 
 
     def Rightwing(self):
-        pass
+        SaveBtn = QtWidgets.QPushButton()
 
+
+        RightGrid = QtWidgets.QGridLayout()
+        RightGrid.addWidget(SaveBtn, 8, 0, 1, 1)
+
+        return RightGrid
+        
+# finish GUI! now we must make slots.
 
 if __name__ == "__main__":
     import sys
