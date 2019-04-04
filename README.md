@@ -77,3 +77,20 @@
 7.	Think_factor
     A.	_id
     B.	factor
+
+
+# 기본 테이블
+
+1.  Date
+3.	Subject
+7.	Think_factor
+
+# 중간 테이블
+
+6.	Diary
+2.	Study
+
+# 심화 테이블
+
+4.	Task
+5.	Test
