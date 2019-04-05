@@ -1,10 +1,14 @@
+import sys
 import sqlite3
 import time, datetime
 
 from PyQt5 import QtWidgets, QtGui
 
+import nltk
+
 
 # 전역 함수들 쓸 곳.
+mod = sys.modules[__name__]
 today = str(datetime.datetime.now())[:10]
 left_day = datetime.date(2019, 11, 14) - datetime.date.today()
 d_days = left_day.days
@@ -61,6 +65,11 @@ class Window(QtWidgets.QWidget):
         postBox.setFont(Basicfont)
         Basicfont.setPointSize(fontsize)
 
+        # 여기서 DB 읽어서 바로 쏴주는 로직 필요함. 아오 나도 모르겠네
+
+        for i in range(1, 8):
+            setattr(mod, "post{}".format(i), self.Cell(Cellname, CellText, fontsize))
+        """
         post1 = self.Cell(Cellname, CellText, fontsize)
         post2 = self.Cell(Cellname, CellText, fontsize)
         post3 = self.Cell(Cellname, CellText, fontsize)
@@ -69,8 +78,11 @@ class Window(QtWidgets.QWidget):
         post6 = self.Cell(Cellname, CellText, fontsize)
         post7 = self.Cell(Cellname, CellText, fontsize)
         # 7개 기억!
+        """
 
         postLayout = QtWidgets.QVBoxLayout()
+
+        # 해 보지 뭐
         postLayout.addWidget(post1)
         postLayout.addWidget(post2)
         postLayout.addWidget(post3)
@@ -78,7 +90,6 @@ class Window(QtWidgets.QWidget):
         postLayout.addWidget(post5)
         postLayout.addWidget(post6)
         postLayout.addWidget(post7)
-
         postBox.setLayout(postLayout)
 
         return postBox
@@ -142,9 +153,18 @@ class Window(QtWidgets.QWidget):
         return RightGrid
         
 # finish GUI! now we must make slots.
+    def Save(self):
+        pass
+
+
+    
+
+
+
+    def Bootstrap(self):
+        pass
 
 if __name__ == "__main__":
-    import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = Window()
     MainWindow.show()
