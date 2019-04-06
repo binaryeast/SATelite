@@ -68,20 +68,20 @@ class Window(QtWidgets.QWidget):
         # 여기서 DB 읽어서 바로 쏴주는 로직 필요함. 아오 나도 모르겠네
 
         for i in range(1, 8):
+            # 이 아랫줄에 DB 읽어서 박는 것!
             setattr(mod, "post{}".format(i), self.Cell(Cellname, CellText, fontsize))
         """
-        post1 = self.Cell(Cellname, CellText, fontsize)
-        post2 = self.Cell(Cellname, CellText, fontsize)
-        post3 = self.Cell(Cellname, CellText, fontsize)
-        post4 = self.Cell(Cellname, CellText, fontsize)
-        post5 = self.Cell(Cellname, CellText, fontsize)
-        post6 = self.Cell(Cellname, CellText, fontsize)
         post7 = self.Cell(Cellname, CellText, fontsize)
         # 7개 기억!
         """
 
         postLayout = QtWidgets.QVBoxLayout()
 
+        for i in range(1, 8):
+            strorder = "postLayout.addWidget(post%d)" %i
+            exec(strorder)
+
+        """
         # 해 보지 뭐
         postLayout.addWidget(post1)
         postLayout.addWidget(post2)
@@ -90,16 +90,12 @@ class Window(QtWidgets.QWidget):
         postLayout.addWidget(post5)
         postLayout.addWidget(post6)
         postLayout.addWidget(post7)
+
+
+        """
         postBox.setLayout(postLayout)
 
         return postBox
-
-        """
-        #Basicfont setting
-        Basicfont = QtGui.QFont()
-        Basicfont.setFamily("D2Coding")
-        Basicfont.setPointSize(20)
-        """
 
     def Board(self):
         coreBox = QtWidgets.QHBoxLayout()
