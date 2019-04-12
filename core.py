@@ -14,6 +14,8 @@ left_day = datetime.date(2019, 11, 14) - datetime.date.today()
 d_days = left_day.days
 
 #SQL 준비.
+con = sqlite3.connect("power supply.db")
+cursor = con.cursor()
 
 # vars for test.
 Cellname = "To-Do"
@@ -65,37 +67,27 @@ class Window(QtWidgets.QWidget):
         postBox.setFont(Basicfont)
         Basicfont.setPointSize(fontsize)
 
+        post = postname.lower()
+
         # 여기서 DB 읽어서 바로 쏴주는 로직 필요함. 아오 나도 모르겠네
 
+        post1 = self.Cell(Cellname, CellText, fontsize)
         for i in range(1, 8):
-            # 이 아랫줄에 DB 읽어서 박는 것!
+            # 이 아랫줄에 DBr읽어서 박는 것!
+            # 여기서 읽어올 것.cursor.execute() 
             setattr(mod, "post{}".format(i), self.Cell(Cellname, CellText, fontsize))
-        """
-        post7 = self.Cell(Cellname, CellText, fontsize)
-        # 7개 기억!
-        """
 
         postLayout = QtWidgets.QVBoxLayout()
+        postLayout.addWidget(post1)
 
-        for i in range(1, 8):
+        for i in range(2, 8):
             strorder = "postLayout.addWidget(post%d)" %i
             exec(strorder)
 
-        """
-        # 해 보지 뭐
-        postLayout.addWidget(post1)
-        postLayout.addWidget(post2)
-        postLayout.addWidget(post3)
-        postLayout.addWidget(post4)
-        postLayout.addWidget(post5)
-        postLayout.addWidget(post6)
-        postLayout.addWidget(post7)
-
-
-        """
         postBox.setLayout(postLayout)
 
         return postBox
+
 
     def Board(self):
         coreBox = QtWidgets.QHBoxLayout()
@@ -121,11 +113,10 @@ class Window(QtWidgets.QWidget):
         
         return MainGrid
 
-    
-    def Leftwing(self): # 그리드로 바꿔 줘야 하고 이것저것 추가해야 함.
-        StatBox = QtWidgets.QGroupBox()
 
-        StatLayout = QtWidgets.QVBoxLayout()
+    def TimeLayout(self):
+        TimeBox = QtWidgets.QGroupBox("your times")
+        TimeBox.setFont(Basicfont)
 
         Left_dayLabel = QtWidgets.QLabel("d - %d" %d_days)
         Left_dayLabel.setFont(Basicfont)
@@ -133,10 +124,30 @@ class Window(QtWidgets.QWidget):
         todayLabel = QtWidgets.QLabel("%s" %today)
         todayLabel.setFont(Basicfont)
 
-        StatLayout.addWidget(Left_dayLabel)
-        StatLayout.addWidget(todayLabel)
+        T_BoxLayout = QtWidgets.QVBoxLayout()
+        T_BoxLayout.addWidget(Left_dayLabel)
+        T_BoxLayout.addWidget(todayLabel)
 
-        return StatLayout
+        TimeBox.setLayout(T_BoxLayout)
+
+        return TimeBox
+
+    
+    def StatLayout(self):
+        StatBox = QtWidgets.QGroupBox()
+        StatBox.setFont(Basicfont)
+
+        return StatBox
+
+
+    def Leftwing(self): # 그리드로 바꿔 줘야 하고 이것저것 추가해야 함.
+        LeftBox = QtWidgets.QGridLayout()
+
+        timeLayout = self.TimeLayout()
+        statLayout = self.StatLayout()
+
+
+        return LeftBox 
 
 
     def Rightwing(self):
