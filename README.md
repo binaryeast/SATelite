@@ -45,17 +45,17 @@
 
 이번엔 전체화면에 페이지도 할 수 있으면 좋겠다.
 
-1.	Date
-    A.	Date_id
-    B.	Date – text
+1.	Date *
+    A.	Date_id *
+    B.	Date – text *
 2.	Study
     A.	_id
     B.	Date
     C.	Sub-id
     D.	Time(hour)
-3.	Subject
-    A.	_id
-    B.	Sub_name
+3.	Subject *
+    A.	_id *
+    B.	Sub_name *
 4.	Task
     A.	_id
     B.	Task_name
@@ -102,7 +102,7 @@
 1. 구글 캘린더 API
 2. 메일이나 문자로 알림 주기.
 3. 서버 통신으로 백업이랑 자동화 하기.
-4. 아침 체조 틀어주기
+4. 아침 체조 틀어주기 - 이건 그냥 웹브라우저에 주소 박아서 파이썬으로 때려칠래.
 
 그래서 코리아 체조에 좋은 뽕짝 하나 붙여야 한다는 소리네.
 

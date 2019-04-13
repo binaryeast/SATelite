@@ -153,10 +153,10 @@ class Window(QtWidgets.QWidget):
 
 
     def Rightwing(self):
-        SaveBtn = QtWidgets.QPushButton()
+        SaveBtn = QtWidgets.QPushButton("Save")
         SaveBtn.clicked.connect(self.Save) # 여기도 함수.
 
-        LineBtn = QtWidgets.QPushButton()
+        LineBtn = QtWidgets.QPushButton("command")
         LineBtn.clicked.connect(self.Bootstrap)
 
         RightGrid = QtWidgets.QGridLayout()
