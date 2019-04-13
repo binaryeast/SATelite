@@ -20,7 +20,7 @@ cursor = con.cursor()
 # vars for test.
 Cellname = "To-Do"
 CellText = "일어나라 빛을 발하라."
-fontsize = 20
+fontsize = 18
 
 # font
 Basicfont = QtGui.QFont()
@@ -104,12 +104,12 @@ class Window(QtWidgets.QWidget):
 
         Command = QtWidgets.QLineEdit("What?")
         Command.setFont(Basicfont)
+        Command.returnPressed.connect(self.Bootstrap) # 여기에다 함수 넣으면 연결됨     라인 함수
 
         MainGrid = QtWidgets.QGridLayout()
         MainGrid.addWidget(Notice, 0, 0, 2, 1)
         MainGrid.addLayout(self.Board(), 2, 0, 5, 1)
         MainGrid.addWidget(Command, 7, 0, 2, 1)
-        #MainGrid.addWidget(self.Board(), 1, 0, 5, 1)
         
         return MainGrid
 
@@ -134,7 +134,7 @@ class Window(QtWidgets.QWidget):
 
     
     def StatLayout(self):
-        StatBox = QtWidgets.QGroupBox()
+        StatBox = QtWidgets.QGroupBox("Status")
         StatBox.setFont(Basicfont)
 
         return StatBox
@@ -146,29 +146,32 @@ class Window(QtWidgets.QWidget):
         timeLayout = self.TimeLayout()
         statLayout = self.StatLayout()
 
+        LeftBox.addWidget(timeLayout)
+        LeftBox.addWidget(statLayout)
 
         return LeftBox 
 
 
     def Rightwing(self):
         SaveBtn = QtWidgets.QPushButton()
+        SaveBtn.clicked.connect(self.Save) # 여기도 함수.
 
+        LineBtn = QtWidgets.QPushButton()
+        LineBtn.clicked.connect(self.Bootstrap)
 
         RightGrid = QtWidgets.QGridLayout()
-        RightGrid.addWidget(SaveBtn, 8, 0, 1, 1)
+        RightGrid.addWidget(SaveBtn, ) 
+        RightGrid.addWidget(LineBtn, 7, 0, 1, 1) 
 
         return RightGrid
         
 # finish GUI! now we must make slots.
     def Save(self):
+        print("Good to go!")
         pass
 
-
-    
-
-
-
     def Bootstrap(self):
+        print("Perfect!")
         pass
 
 if __name__ == "__main__":
