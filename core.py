@@ -99,17 +99,17 @@ class Window(QtWidgets.QWidget):
 
 
     def MainBoard(self, notice):
-        Notice = QtWidgets.QLabel("Notice : %s" %notice)
-        Notice.setFont(Basicfont)
+        self.Notice = QtWidgets.QLabel("Notice : %s" %notice)
+        self.Notice.setFont(Basicfont)
 
-        Command = QtWidgets.QLineEdit("What?")
-        Command.setFont(Basicfont)
-        Command.returnPressed.connect(self.Bootstrap) # 여기에다 함수 넣으면 연결됨     라인 함수
+        self.Command = QtWidgets.QLineEdit("What?")
+        self.Command.setFont(Basicfont)
+        self.Command.returnPressed.connect(self.Bootstrap) # 여기에다 함수 넣으면 연결됨     라인 함수
 
         MainGrid = QtWidgets.QGridLayout()
-        MainGrid.addWidget(Notice, 0, 0, 2, 1)
+        MainGrid.addWidget(self.Notice, 0, 0, 2, 1)
         MainGrid.addLayout(self.Board(), 2, 0, 5, 1)
-        MainGrid.addWidget(Command, 7, 0, 2, 1)
+        MainGrid.addWidget(self.Command, 7, 0, 2, 1)
         
         return MainGrid
 
@@ -172,7 +172,9 @@ class Window(QtWidgets.QWidget):
 
     def Bootstrap(self):
         print("Perfect!")
-        pass
+        # 이 아래 깨짐. 확인할것.
+        commandline = self.Command.text()
+        print(commandline)
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
