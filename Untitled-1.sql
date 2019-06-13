@@ -1,0 +1,2 @@
+-- SQLite
+INSERT INTO date VALUES(2019-10-29)

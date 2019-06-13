@@ -4,8 +4,8 @@ import time, datetime
 
 from PyQt5 import QtWidgets, QtGui
 
-import nltk
-
+from nltk.tokenize import WhitespaceTokenizer as Wtokenizer
+import sqlcmd
 
 # 전역 함수들 쓸 곳.
 mod = sys.modules[__name__]
@@ -14,8 +14,10 @@ left_day = datetime.date(2019, 11, 14) - datetime.date.today()
 d_days = left_day.days
 
 #SQL 준비.
-con = sqlite3.connect("power supply.db")
+con = sqlite3.connect("D:/New working space/Programming/SATelite/SATelite/power supply.db")
 cursor = con.cursor()
+cmdsor = sqlcmd.cmd("D:/New working space/Programming/SATelite/SATelite/power supply.db")
+
 
 # vars for test.
 Cellname = "To-Do"
@@ -30,6 +32,16 @@ Basicfont.setPointSize(fontsize)
 
 # DB 로직 짤 부분.
 
+def fileread(file):
+    with open(file, "r") as f:
+        plaintext = f.read()
+        linetext = f.readlines()
+
+    
+def filewrite(file, data):
+    with open(file, "w") as f:
+        writing = f.write(data)
+
 class Window(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super(Window, self).__init__(parent)
@@ -39,6 +51,20 @@ class Window(QtWidgets.QWidget):
         MasterLayout.addLayout(self.MainBoard("완성까지!")) # MainGrid
         MasterLayout.addLayout(self.Rightwing())
         self.setLayout(MasterLayout)
+
+        try:
+            cursor.execute("SELECT * FROM date ORDER BY date_id DESC")
+            lastday = cursor.fetchone()
+            print(lastday)
+            if lastday[1] == today:
+                print("perfect!")
+            else:
+                datecommand = "INSERT INTO date VALUES(\""+today+"\")"
+                print(datecommand)
+                cursor.execute(datecommand)
+            print("good!")
+        except:
+            print("DB error!")
 
         # 창 설정, 건드릴 것 없음.
         self.setWindowTitle("Missionary's Nuke")
@@ -67,20 +93,17 @@ class Window(QtWidgets.QWidget):
         postBox.setFont(Basicfont)
         Basicfont.setPointSize(fontsize)
 
-        post = postname.lower()
+        postname = postname.lower()
+        # 여기서 세로줄이 칼럼인가? 그거 맞게 긁어오는 걸로 바꿔야 해. 아오 귀찮아.
+        # cursor.execute("""SELECT * FROM %s ORDER BY id DESC""" %postname)
 
-        # 여기서 DB 읽어서 바로 쏴주는 로직 필요함. 아오 나도 모르겠네
-
-        post1 = self.Cell(Cellname, CellText, fontsize)
         for i in range(1, 8):
-            # 이 아랫줄에 DBr읽어서 박는 것!
-            # 여기서 읽어올 것.cursor.execute() 
+            # text = cursor.fetchone()
             setattr(mod, "post{}".format(i), self.Cell(Cellname, CellText, fontsize))
 
         postLayout = QtWidgets.QVBoxLayout()
-        postLayout.addWidget(post1)
 
-        for i in range(2, 8):
+        for i in range(1, 8):
             strorder = "postLayout.addWidget(post%d)" %i
             exec(strorder)
 
@@ -175,6 +198,10 @@ class Window(QtWidgets.QWidget):
         # 이 아래 깨짐. 확인할것.
         commandline = self.Command.text()
         print(commandline)
+        token_list = Wtokenizer().tokenize(commandline)
+        for t in token_list:
+            print(t)
+
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
